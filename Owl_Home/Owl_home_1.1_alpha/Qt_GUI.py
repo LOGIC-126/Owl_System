@@ -241,7 +241,6 @@ class MainWindow(QMainWindow):
     def set_lineda(self,name,text):
         """显示短数据并清除"""
         text = str(text)
-        name.clear()
         name.setText(text)
 
         
@@ -280,7 +279,6 @@ class MainWindow(QMainWindow):
         # 更新图表数据
         if self.y_data:
             self.x.append(len(self.x))
-            # self.graphics_view.setXRange(0,50, padding=0)
         
             for label in self.y_data.keys():
                 self.y_data[label].append(getattr(self.values, label))
