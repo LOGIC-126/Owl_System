@@ -241,6 +241,7 @@ class MainWindow(QMainWindow):
     def set_lineda(self,name,text):
         """显示短数据并清除"""
         text = str(text)
+        name.clear()
         name.setText(text)
 
         
