@@ -1,8 +1,7 @@
 {
-    "set_port": "COM5",
+    "set_port": "COM4",
     "set_allport": [
-        "COM3",
-        "COM5"
+        "COM4"
     ],
     "set_baudrate": 115200,
     "set_bytesize": "serial.EIGHTBITS",

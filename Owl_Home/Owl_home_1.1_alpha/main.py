@@ -41,8 +41,6 @@ def dataget(datas):
                         send_text = window.send_lineEdit.text().encode('utf-8')
                         # 发送数据
                         ser.write(send_text)
-                        # window.send_lineEdit.clear()
-                        # window.his_send.add(send_text)
                         window.if_send_data = False
 
                     data = ser.read()  # 读取数据
@@ -103,7 +101,7 @@ def packetget(Rxdata):
                 
     elif RxState == 1:  # 当前状态为1，接收数据包数据
         The_datas.append(Rxdata)  # 将数据添加到 The_datas 列表中
-        if len(The_datas) >= 14:  # 如果已经接收到3个数据字节
+        if len(The_datas) >= 3:  # 如果已经接收到3个数据字节
             RxState = 2  # 置下一个状态
                 
     elif RxState == 2:  # 当前状态为2，接收数据包包尾
