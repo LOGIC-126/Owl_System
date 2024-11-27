@@ -1,4 +1,5 @@
 import sys,threading,serial,json
+import serial.tools.list_ports
 from Qt_GUI import *
 
 # 全局变量
@@ -76,7 +77,8 @@ def dataget(datas):
 
 # 主函数
 def mainWindow():
-    global window
+    global window,available_ports
+    available_ports = get_available_com_ports()
     app = QApplication(sys.argv)
     window = MainWindow()
     sys.exit(app.exec_())
@@ -160,6 +162,43 @@ def ser_init(modifications):
         "serial.STOPBITS_TWO": serial.STOPBITS_TWO
     }[modifications["set_stopbits"]]  # 停止位
     ser.timeout = modifications["set_timeout"]  # 读取超时时间
+
+def get_available_com_ports():
+    """
+    获取可用的串口信息
+    返回一个包含此信息的字典
+    """
+    # 获取所有可用的串口
+    ports = serial.tools.list_ports.comports()
+    
+    # 存储可用串口的信息
+    available_ports = []
+    
+    for port in ports:
+        available_ports.append({
+            'device': port.device,
+            'name': port.name,
+            'description': port.description,
+            'hwid': port.hwid,
+            'vid': port.vid,
+            'pid': port.pid,
+            'serial_number': port.serial_number,
+            'location': port.location,
+            'manufacturer': port.manufacturer,
+            'product': port.product,
+            'interface': port.interface
+        })
+    
+    return available_ports
+
+# def add_available_com_ports(ports):
+#     if not ports:
+#         pass
+#     else:
+#         # print("Available COM ports:")
+#         for port in ports:
+#             print(f"Device: {port['device']}, Name: {port['name']}, Description: {port['description']}")
+
 
 # 创建并启动数据获取线程
 thread_data = threading.Thread(target=dataget, args=(datas,))
