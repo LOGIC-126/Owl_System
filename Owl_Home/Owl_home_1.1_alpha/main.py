@@ -26,7 +26,7 @@ def dataget(datas):
                 if window is not None and window.is_running:
                     if once:        #主窗口定时器开始运行时只打开串口一次
                         try:
-                            setting = window.load_data(window.setfile)
+                            setting = load_data(window.setfile)
                             ser_init(setting)
                             ser.open()
                             once = False
@@ -78,7 +78,13 @@ def dataget(datas):
 # 主函数
 def mainWindow():
     global window,available_ports
+
     available_ports = get_available_com_ports()
+    key_port = []
+    for port in available_ports:
+        key_port.append(port['device'])
+    modify_json_file(returnPATH(),{"set_allport":key_port})
+
     app = QApplication(sys.argv)
     window = MainWindow()
     sys.exit(app.exec_())
@@ -190,15 +196,6 @@ def get_available_com_ports():
         })
     
     return available_ports
-
-# def add_available_com_ports(ports):
-#     if not ports:
-#         pass
-#     else:
-#         # print("Available COM ports:")
-#         for port in ports:
-#             print(f"Device: {port['device']}, Name: {port['name']}, Description: {port['description']}")
-
 
 # 创建并启动数据获取线程
 thread_data = threading.Thread(target=dataget, args=(datas,))

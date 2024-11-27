@@ -17,6 +17,8 @@ import warnings
 # 忽略 DeprecationWarning
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+SETPATH = './setting.json'
+
 class Outdatas:
     """外部传输数据"""
     def __init__(self):
@@ -212,8 +214,9 @@ class MainWindow(QMainWindow):
         """初始化设置选项"""
         # 加载设置文件
         self.setfile = './setting.json'
+        self.setfile = SETPATH
 
-        self.setting = self.load_data(self.setfile)
+        self.setting = load_data(self.setfile)
         self.set_port = self.setting["set_port"]  
         self.set_baudrate = self.setting['set_baudrate']
         self.set_bytesize = self.setting['set_bytesize']
@@ -238,50 +241,8 @@ class MainWindow(QMainWindow):
     def set_lineda(self,name,text):
         """显示短数据并清除"""
         text = str(text)
-        name.clear()
         name.setText(text)
 
-    def load_data(self,The_file):
-        """载入数据"""
-        try:
-            with open(The_file, 'r') as file:
-                jsondata = json.load(file)
-                return jsondata
-        except FileNotFoundError:
-            with open(The_file, 'w') as file:
-                json.dump({}, file)
-            jsondata = {}
-            print('Not find')
-        except json.JSONDecodeError as e:
-            pass
-            print(f"JSON 解析错误: {e}")
-            jsondata = {}
-
-    # def modify_json_file(self, modifications):
-    #     """
-    #     修改JSON文件中的内容。
-
-    #     :param file_path: JSON文件的路径
-    #     :param modifications: 包含要修改的键值对的字典
-    #     """
-    #     # 步骤1: 读取JSON文件
-    #     with open(self.setfile, 'r', encoding='utf-8') as file:
-    #         data = json.load(file)
-
-    #     # 步骤2: 修改数据
-    #     for key, value in modifications.items():
-    #         if key in data:
-    #             data[key] = value
-    #         else:
-    #             print(f"警告：键 '{key}' 不存在于JSON文件中,无法修改。")
-
-    #     # 步骤3: 写回JSON文件
-    #     with open(self.setfile, 'w', encoding='utf-8') as file:
-    #         json.dump(data, file, ensure_ascii=False, indent=4)
-
-    def Refreshdata(self,value):
-        """重获取一次数据"""    
-        self.values = value
         
     """
     ############################## ending:通用控件函数 #################################
@@ -713,7 +674,7 @@ class MainWindow(QMainWindow):
         settings = self.get_all_set()
 
         # 将设置值写入JSON文件
-        self.modify_json_file(settings)
+        modify_json_file(self.setfile,settings)
 
 
     """
@@ -747,6 +708,33 @@ def modify_json_file(The_file, modifications):
         # 步骤3: 写回JSON文件
         with open(The_file, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
+
+def load_data(The_file):
+        """
+        载入json文件中的数据
+
+        param The_file: JSON文件的路径
+        param jsondata: 返回的数据字典
+        """
+        try:
+            with open(The_file, 'r') as file:
+                jsondata = json.load(file)
+                return jsondata
+        except FileNotFoundError:
+            with open(The_file, 'w') as file:
+                json.dump({}, file)
+            jsondata = {}
+            print('Not find')
+        except json.JSONDecodeError as e:
+            pass
+            print(f"JSON 解析错误: {e}")
+            jsondata = {}
+
+def returnPATH():
+    """
+    返回从此文件储存的路径值
+    """
+    return SETPATH
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
