@@ -9,7 +9,7 @@
     "set_parity": "serial.PARITY_NONE",
     "set_stopbits": "serial.STOPBITS_ONE",
     "set_timeout": 1.0,
-    "set_decode_mode": "utf-8",
+    "set_decode_mode": "int",
     "set_IF_notview": false,
     "set_IF_add_daily": false,
     "set_K1": [

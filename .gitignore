@@ -2,3 +2,7 @@ Owl_Home/Owl_home_1.0_alpha/dist/Owl_home_1.0.zip
 Owl_Home/setting.json
 *.exe
 Owl_home_1.0_alpha/dist/
+*.pyc
+Owl_Home/Owl_home_1.1_alpha/build/main/Analysis-00.toc
+Owl_Home/Owl_home_1.1_alpha/dist/
+Owl_Home/Owl_home_1.1_alpha/build/
