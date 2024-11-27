@@ -257,27 +257,27 @@ class MainWindow(QMainWindow):
             print(f"JSON 解析错误: {e}")
             jsondata = {}
 
-    def modify_json_file(self, modifications):
-        """
-        修改JSON文件中的内容。
+    # def modify_json_file(self, modifications):
+    #     """
+    #     修改JSON文件中的内容。
 
-        :param file_path: JSON文件的路径
-        :param modifications: 包含要修改的键值对的字典
-        """
-        # 步骤1: 读取JSON文件
-        with open(self.setfile, 'r', encoding='utf-8') as file:
-            data = json.load(file)
+    #     :param file_path: JSON文件的路径
+    #     :param modifications: 包含要修改的键值对的字典
+    #     """
+    #     # 步骤1: 读取JSON文件
+    #     with open(self.setfile, 'r', encoding='utf-8') as file:
+    #         data = json.load(file)
 
-        # 步骤2: 修改数据
-        for key, value in modifications.items():
-            if key in data:
-                data[key] = value
-            else:
-                print(f"警告：键 '{key}' 不存在于JSON文件中,无法修改。")
+    #     # 步骤2: 修改数据
+    #     for key, value in modifications.items():
+    #         if key in data:
+    #             data[key] = value
+    #         else:
+    #             print(f"警告：键 '{key}' 不存在于JSON文件中,无法修改。")
 
-        # 步骤3: 写回JSON文件
-        with open(self.setfile, 'w', encoding='utf-8') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
+    #     # 步骤3: 写回JSON文件
+    #     with open(self.setfile, 'w', encoding='utf-8') as file:
+    #         json.dump(data, file, ensure_ascii=False, indent=4)
 
     def Refreshdata(self,value):
         """重获取一次数据"""    
@@ -726,6 +726,27 @@ class MainWindow(QMainWindow):
         self.acveview()
         self.put_boot_text()
 
+def modify_json_file(The_file, modifications):
+        """
+        修改JSON文件中的内容。
+
+        :param file_path: JSON文件的路径
+        :param modifications: 包含要修改的键值对的字典
+        """
+        # 步骤1: 读取JSON文件
+        with open(The_file, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+        # 步骤2: 修改数据
+        for key, value in modifications.items():
+            if key in data:
+                data[key] = value
+            else:
+                print(f"警告：键 '{key}' 不存在于JSON文件中,无法修改。")
+
+        # 步骤3: 写回JSON文件
+        with open(The_file, 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
