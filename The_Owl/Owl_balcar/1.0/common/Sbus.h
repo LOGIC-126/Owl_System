@@ -5,7 +5,7 @@
 extern uint8_t SBUS_Packet[];
 
 //SBUS协议data数
-#define SBUS_DATA_NUM 25
+#define SBUS_DATA_NUM 23		// 去除包头包尾
 // 串口2-USART2
 #define  SBUS_USART                    USART3
 #define  SBUS_USART_CLK                RCC_APB1Periph_USART3
@@ -28,5 +28,8 @@ extern uint8_t SBUS_Packet[];
 
 void SBUS_USARTConfig(void);
 uint8_t SBUS_GetRxFlag(void);
+void parse_channels(uint16_t *CH_1, uint16_t *CH_2, uint16_t *CH_3, 
+                    uint16_t *CH_4, uint16_t *CH_5, uint16_t *CH_6, 
+                    uint8_t *flags);
 
 #endif

@@ -95,7 +95,7 @@ uint8_t SBUS_GetRxFlag(void)
 	return 0;						//如果标志位为0，则返回0
 }
 /**
-  * 函    数：SBUS_USART中断函数
+  * 函    数：USART2中断函数
   * 参    数：无
   * 返 回 值：无
   * 注意事项：此函数为中断函数，无需调用，中断触发后自动执行
@@ -144,3 +144,28 @@ void SBUS_USART_IRQHandler(void)
 		USART_ClearITPendingBit(SBUS_USART, USART_IT_RXNE);		//清除标志位
 	}
 }
+
+/**
+  * 函    数：通道值解析函数
+  * 参    数：CH通道值指针
+  * 返 回 值：CH通道值
+  */
+void parse_channels(uint16_t *CH_1, uint16_t *CH_2, uint16_t *CH_3, 
+                    uint16_t *CH_4, uint16_t *CH_5, uint16_t *CH_6, 
+                    uint8_t *flags) {
+    // 辅助函数：将一个字节转换为二进制表示，并提取指定的位
+    #define BINARYCON(byte, start, end) (((byte) >> (7 - (end))) & ((1 << ((end) - (start) + 1)) - 1))
+
+    // 解析各个通道的数据
+    *CH_1 = (BINARYCON(SBUS_Packet[2], 2, 7) << 5) | BINARYCON(SBUS_Packet[1], 0, 4); // 右摇杆上下
+    *CH_2 = (BINARYCON(SBUS_Packet[1], 5, 7) << 8) | SBUS_Packet[0];                  // 右摇杆左右
+    *CH_3 = (BINARYCON(SBUS_Packet[4], 7, 7) << 10) | (SBUS_Packet[3] << 2) | BINARYCON(SBUS_Packet[2], 0, 1); // 左摇杆上下
+    *CH_4 = (BINARYCON(SBUS_Packet[5], 4, 7) << 7) | (SBUS_Packet[4] & 0x7F);           // 左摇杆左右
+    *CH_5 = (BINARYCON(SBUS_Packet[6], 1, 7) << 4) | BINARYCON(SBUS_Packet[5], 0, 3); // 左开关
+    *CH_6 = (BINARYCON(SBUS_Packet[8], 6, 7) << 9) | (SBUS_Packet[7] << 1);           // 右开关
+    *flags = SBUS_Packet[11]; // 电源开关
+
+    // 清除宏定义
+    #undef BINARYCON
+}
+					
