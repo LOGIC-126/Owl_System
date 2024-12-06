@@ -1,14 +1,14 @@
 {
-    "set_port": "COM4",
+    "set_port": "COM6",
     "set_allport": [
-        "COM4"
+        "COM6"
     ],
     "set_baudrate": 115200,
     "set_bytesize": "serial.EIGHTBITS",
     "set_parity": "serial.PARITY_NONE",
     "set_stopbits": "serial.STOPBITS_ONE",
     "set_timeout": 1.0,
-    "set_decode_mode": "int",
+    "set_decode_mode": "utf-8",
     "set_IF_notview": false,
     "set_IF_add_daily": false,
     "set_K1": [

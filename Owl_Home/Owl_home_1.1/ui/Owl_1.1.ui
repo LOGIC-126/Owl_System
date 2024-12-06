@@ -35,7 +35,7 @@
          </font>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="main_view">
          <attribute name="title">
@@ -64,7 +64,7 @@
                <attribute name="title">
                 <string>串口</string>
                </attribute>
-               <layout class="QVBoxLayout" name="verticalLayout_25" stretch="1,0,0">
+               <layout class="QVBoxLayout" name="verticalLayout_25" stretch="1,0,0,0">
                 <item>
                  <widget class="QGroupBox" name="groupBox_3">
                   <property name="title">
@@ -306,6 +306,18 @@
                       </widget>
                      </item>
                     </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_5">
+                  <property name="title">
+                   <string>绘图区数据链接</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_26">
+                   <item>
+                    <widget class="QListView" name="datalink_listView"/>
                    </item>
                   </layout>
                  </widget>
@@ -1031,6 +1043,167 @@
             <attribute name="title">
              <string>其他数据</string>
             </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_31">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_37">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_38">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_27">
+                   <item>
+                    <widget class="QRadioButton" name="CH1_radioButton">
+                     <property name="contextMenuPolicy">
+                      <enum>Qt::DefaultContextMenu</enum>
+                     </property>
+                     <property name="text">
+                      <string>CH1:</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                     <property name="autoRepeat">
+                      <bool>true</bool>
+                     </property>
+                     <property name="autoExclusive">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="CH2_radioButton">
+                     <property name="contextMenuPolicy">
+                      <enum>Qt::DefaultContextMenu</enum>
+                     </property>
+                     <property name="text">
+                      <string>CH2:</string>
+                     </property>
+                     <property name="autoRepeat">
+                      <bool>true</bool>
+                     </property>
+                     <property name="autoExclusive">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="CH3_radioButton">
+                     <property name="contextMenuPolicy">
+                      <enum>Qt::DefaultContextMenu</enum>
+                     </property>
+                     <property name="text">
+                      <string>CH3:</string>
+                     </property>
+                     <property name="autoRepeat">
+                      <bool>true</bool>
+                     </property>
+                     <property name="autoExclusive">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_28">
+                   <item>
+                    <widget class="QLineEdit" name="data_CH1"/>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="data_CH2"/>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="data_CH3">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_39">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_29">
+                   <item>
+                    <widget class="QRadioButton" name="CH4_radioButton">
+                     <property name="contextMenuPolicy">
+                      <enum>Qt::NoContextMenu</enum>
+                     </property>
+                     <property name="text">
+                      <string>CH4:</string>
+                     </property>
+                     <property name="autoRepeat">
+                      <bool>true</bool>
+                     </property>
+                     <property name="autoExclusive">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="CH5_radioButton">
+                     <property name="contextMenuPolicy">
+                      <enum>Qt::NoContextMenu</enum>
+                     </property>
+                     <property name="text">
+                      <string>CH5:</string>
+                     </property>
+                     <property name="autoRepeat">
+                      <bool>true</bool>
+                     </property>
+                     <property name="autoExclusive">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="CH6_radioButton">
+                     <property name="contextMenuPolicy">
+                      <enum>Qt::NoContextMenu</enum>
+                     </property>
+                     <property name="text">
+                      <string>CH6:</string>
+                     </property>
+                     <property name="autoRepeat">
+                      <bool>true</bool>
+                     </property>
+                     <property name="autoExclusive">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_30">
+                   <item>
+                    <widget class="QLineEdit" name="data_CH4"/>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="data_CH5"/>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="data_CH6">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </widget>
           </widget>
          </item>

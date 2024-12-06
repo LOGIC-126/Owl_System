@@ -48,9 +48,10 @@ def dataget(datas):
                         boot_data = int.from_bytes(data, byteorder='big')   # 原始数据化整
                         datas = packetget(boot_data)    # 解包数据包
                         
-                        # 改变接收数据文本
-                        text_data = boot_textprint(data,setting["set_decode_mode"])
-                        window.boot_text += str(text_data) + " "
+                        # # 改变接收数据文本
+                        # text_data = boot_textprint(data,setting["set_decode_mode"])
+                        # window.boot_text += str(text_data) + " "
+                        window.boot_text += printText(data,setting["set_decode_mode"])
                         if Serial_RxFlag:   # 判断数据包是否接收完信息
                             window.values.Pirth = datas[0]
                             window.values.GyroY = datas[1]
@@ -194,6 +195,22 @@ def get_available_com_ports():
         })
     
     return available_ports
+
+def printText(data,mode):
+    """
+    在相应文本框中参考模式打印文字
+
+    :param data: 打印数据
+    :param mode: 显示模式，可选值为 'utf-8', 'ascii', 'gbk', 'hex', 'int'
+    :return: 无
+    """
+    text = boot_textprint(data,mode)
+    if mode == 'hex' or mode == 'int':
+        ptext = str(text) + " "
+    else:
+        ptext = str(text)
+
+    return ptext
 
 # 创建并启动数据获取线程
 thread_data = threading.Thread(target=dataget, args=(datas,))
