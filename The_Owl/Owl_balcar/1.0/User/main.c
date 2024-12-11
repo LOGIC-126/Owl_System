@@ -30,14 +30,13 @@ uint8_t datapacket[CTP_LONGTH];
 int main(void)
 {
 	All_config();
+//	OLED_Draw_Line("Hello!", 2, false, true); 
 	while(1)
 	{	
 		if (Costime == 10){
 			datapacket[0] = Angle_Balance;
 			datapacket[1] = Gyro_Balance;
 			datapacket[2] = Gyro_Turn;
-//			printf("Pitch: %f Lv:%f, Rv:%f \n",Angle_Balance,Velocity_Left,Velocity_Right);
-//			printf("PL:%d,PM:%d \n",Motor_Left,Motor_Right);         					//赋值给PWM寄存器
 			USB_UsartSendpacket(DEBUG_USART,datapacket,CTP_LONGTH);
 			Costime = 0;
 			
@@ -50,24 +49,6 @@ int main(void)
 }
 
 
-// void EXTI15_10_IRQHandler(void)
-// {
-//   // 检查是否发生中断事件·
-//   if(MPU6050_INT==0)		
-// 	{   
-// 		EXTI->PR=1<<12;
-// 		Costime +=1;
-// 		Velocity_Left=Read_Encoder(MOTOR_ID_ML);            					//读取左轮编码器的值，前进为正，后退为负 Read the value of the left wheel encoder, forward is positive, backward is negative
-// 		Velocity_Right=-Read_Encoder(MOTOR_ID_MR);
-// 		                           					//清除中断标志位 
-//  		Get_Angle(GET_Angle_Way);
-		
-// 		Set_Pwm(0,0);
-		
-//    }
-	
-// }
-//float battery = 12;//初始状态处于满电 12v
 void EXTI15_10_IRQHandler(void)
 {
 	int Encoder_Left,Encoder_Right;             					//左右编码器的脉冲计数

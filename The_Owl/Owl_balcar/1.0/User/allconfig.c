@@ -5,6 +5,7 @@ void All_config(void)
 {
 	NVIC_Config();
 	delay_init();
+	OLED_I2C_Init();							//oled初始化 OLED initialization
 	USB_USARTConfig();
 	Balance_Motor_Init();
 	Balance_PWM_Init(2880,0);
@@ -16,7 +17,7 @@ void All_config(void)
 	MPU6050_initialize();						//陀螺仪量程初始化  Gyroscope range initialization
 	DMP_Init();                     //DMP初始化    DMP initialization	
 	
-//	OLED_I2C_Init();							//oled初始化 OLED initialization
+
 	
 	MPU6050_EXTI_Init();			//一定，他妈的，要放最后，妈的我查了老半天优先级的问题
 }
