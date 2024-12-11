@@ -7,6 +7,7 @@ void All_config(void)
 	delay_init();
 	OLED_I2C_Init();							//oled初始化 OLED initialization
 	USB_USARTConfig();
+	W25Q64_Init();
 	Balance_Motor_Init();
 	Balance_PWM_Init(2880,0);
 //	GPIO_Config(GPIOA,GPIO_Pin_11,GPIO_Mode_Out_PP,GPIO_Speed_2MHz);

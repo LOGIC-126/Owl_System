@@ -145,6 +145,9 @@ void USB_UsartSendpacket(USART_TypeDef * pUSARTx,uint8_t *array, uint16_t num)
 	
 }
 
+///串口接收数据
+
+
 ///重定向c库函数printf到串口，重定向后可使用printf函数
 int fputc(int ch, FILE *f)
 {

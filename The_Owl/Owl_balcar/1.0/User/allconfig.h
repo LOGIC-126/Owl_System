@@ -134,6 +134,9 @@ typedef enum Car_mode_t{
 #include "bsp_oled.h"
 #include "bsp_oled_i2c.h"
 
+//存储器
+#include "W25Q64.h"
+
 
 //引出的通用变量
 extern float Velocity_Left,Velocity_Right; //轮子的速度

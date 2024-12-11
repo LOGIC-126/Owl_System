@@ -1,5 +1,5 @@
-#include "stm32f10x.h"                  // Device header
 #include "SPI.h"
+#include "W25Q64.h"
 #include "W25Q64_Ins.h"
 
 /**
@@ -10,6 +10,7 @@
 void W25Q64_Init(void)
 {
 	The_SPI_Init();					//先初始化底层的SPI
+	printf("W25Q64 complete!\n");
 }
 
 /**
@@ -132,3 +133,4 @@ void W25Q64_ReadData(uint32_t Address, uint8_t *DataArray, uint32_t Count)
 	}
 	SPI_Stop();								//SPI终止
 }
+

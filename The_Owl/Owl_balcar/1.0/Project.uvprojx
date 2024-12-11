@@ -735,21 +735,21 @@
               <FileType>5</FileType>
               <FilePath>.\common\filter\filter.h</FilePath>
             </File>
+            <File>
+              <FileName>Spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\common\Spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>Spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\common\Spi.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Hardware</GroupName>
           <Files>
-            <File>
-              <FileName>MC6RE.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Hardware\MC6RE.c</FilePath>
-            </File>
-            <File>
-              <FileName>MC6RE.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Hardware\MC6RE.h</FilePath>
-            </File>
             <File>
               <FileName>Encoder.c</FileName>
               <FileType>1</FileType>
@@ -809,6 +809,21 @@
               <FileName>beep.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Hardware\beep.h</FilePath>
+            </File>
+            <File>
+              <FileName>W25Q64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\W25Q64.c</FilePath>
+            </File>
+            <File>
+              <FileName>W25Q64.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\W25Q64.h</FilePath>
+            </File>
+            <File>
+              <FileName>W25Q64_Ins.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\W25Q64_Ins.h</FilePath>
             </File>
           </Files>
         </Group>

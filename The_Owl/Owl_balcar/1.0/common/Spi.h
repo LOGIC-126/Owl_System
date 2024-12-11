@@ -1,7 +1,7 @@
 #ifndef __SPI_H
 #define __SPI_H
 
-#include "stm32f10x.h"                  // Device header
+#include "allconfig.h"
 
 #define SPI_SS_PORT GPIOB
 #define SPI_SS_PIN  GPIO_Pin_12
