@@ -20,10 +20,11 @@ void Key1_GPIO_Init(void)
 
 void EXTI9_5_IRQHandler(void)
 {
-     if(KEY_INT==0)     
+	if(KEY_INT==0)     
     {   
         EXTI->PR=1<<8; // 清除中断标志位
         Stop_Flag = !Stop_Flag;
+		
     }
 }
 

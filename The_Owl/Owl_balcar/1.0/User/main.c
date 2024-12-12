@@ -30,7 +30,7 @@ uint8_t datapacket[CTP_LONGTH];
 int main(void)
 {
 	All_config();
-//	OLED_Draw_Line("Hello!", 2, false, true); 
+	OLED_Draw_Line("Owl_balcar 1.0", 1, true, true); 
 	while(1)
 	{	
 		if (Costime == 10){
