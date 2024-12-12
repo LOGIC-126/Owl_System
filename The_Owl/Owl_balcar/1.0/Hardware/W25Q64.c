@@ -134,3 +134,31 @@ void W25Q64_ReadData(uint32_t Address, uint8_t *DataArray, uint32_t Count)
 	SPI_Stop();								//SPI终止
 }
 
+/**
+  * 函    数：W25Q64写入浮点数
+  * 参    数：Address 浮点数存储的起始地址，范围：0x000000~0x7FFFFF
+  * 参    数：value 要写入的浮点数值
+  * 返 回 值：无
+  */
+void W25Q64_WriteFloat(uint32_t Address, float value)
+{
+    uint8_t buffer[sizeof(float)];
+    memcpy(buffer, &value, sizeof(float)); // 将浮点数转换为字节数组
+    
+    // 如果需要确保不跨越页边界，这里可以添加逻辑来处理
+    W25Q64_PageProgram(Address, buffer, sizeof(float));
+}
+
+/**
+  * 函    数：W25Q64读取浮点数
+  * 参    数：Address 浮点数读取的起始地址，范围：0x000000~0x7FFFFF
+  * 返 回 值：读取到的浮点数值
+  */
+float W25Q64_ReadFloat(uint32_t Address)
+{
+    uint8_t readBuffer[sizeof(float)];
+    W25Q64_ReadData(Address, readBuffer, sizeof(float)); // 读取数据到缓冲区
+    float readFloat;
+    memcpy(&readFloat, readBuffer, sizeof(float)); // 将字节数组转换回浮点数
+    return readFloat;
+}

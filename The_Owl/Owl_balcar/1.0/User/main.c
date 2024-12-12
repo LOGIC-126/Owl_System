@@ -30,13 +30,16 @@ uint8_t datapacket[CTP_LONGTH];
 int main(void)
 {
 	All_config();
-	OLED_Draw_Line("Owl_balcar 1.0", 1, true, true); 
+	OLED_Draw_Line("Owl_balcar 1.0", 1, true, false);
+	W25Q64_WriteFloat(Balance_Kp_ADDRESS, Balance_Kp);
+	Balance_Kp = W25Q64_ReadFloat(Balance_Kp_ADDRESS);
 	while(1)
 	{	
 		if (Costime == 10){
 			datapacket[0] = Angle_Balance;
 			datapacket[1] = Gyro_Balance;
 			datapacket[2] = Gyro_Turn;
+//			printf("Balance_Kp: %f \n",Balance_Kp);
 			USB_UsartSendpacket(DEBUG_USART,datapacket,CTP_LONGTH);
 			Costime = 0;
 			
