@@ -5,7 +5,7 @@ u32 beep_time = 0;
 void init_beep(void)
 {
 	//初始化蜂鸣器的引脚
-  GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitTypeDef GPIO_InitStructure;
 	/*开启外设时钟*/
 	RCC_APB2PeriphClockCmd(BEEP_RCC, ENABLE); 
 	/*选择要控制的引脚*/															   

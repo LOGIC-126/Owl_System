@@ -21,7 +21,7 @@ int Mid_Angle;
 float Move_X,Move_Z; 
 //Move_X:前进速度  Move_Z：转向速度  //Move_X: Forward speed Move_Z: Steering speed
 
-u8 Stop_Flag = 0; 
+u8 Stop_Flag = 1; 
 //0:开始 1:停止  //0: Start 1: Stop
 
 int Costime = 0;
@@ -84,8 +84,12 @@ void EXTI15_10_IRQHandler(void)
 		Motor_Left=PWM_Limit(Motor_Left,2600,-2600); //25khz->2592 
 		Motor_Right=PWM_Limit(Motor_Right,2600,-2600);		
 
-		if(Turn_Off(Angle_Balance,battery)==0)     					//如果不存在异常
-			Set_Pwm(Motor_Left,Motor_Right);         					//赋值给PWM寄存器 
+		if(Turn_Off(Angle_Balance,battery)==0)			//如果不存在异常
+		{
+			if (Stop_Flag == 0)
+				Set_Pwm(Motor_Left,Motor_Right);         					//赋值给PWM寄存器 
+		}	
+		
 		
 		 		
    }

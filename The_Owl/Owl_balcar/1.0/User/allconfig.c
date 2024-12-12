@@ -8,9 +8,9 @@ void All_config(void)
 	OLED_I2C_Init();							//oled初始化 OLED initialization
 	USB_USARTConfig();
 	W25Q64_Init();
+	Key1_GPIO_Init();
 	Balance_Motor_Init();
 	Balance_PWM_Init(2880,0);
-//	GPIO_Config(GPIOA,GPIO_Pin_11,GPIO_Mode_Out_PP,GPIO_Speed_2MHz);
 	Encoder_Init_TIM3();
 	Encoder_Init_TIM4(); 
 	delay_ms(300);			
@@ -53,17 +53,23 @@ void NVIC_Config(void)
 	
 	//外部中断
 	NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;		
-  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;
+  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x03;
   	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;		
   	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;				
   	NVIC_Init(&NVIC_InitStructure); 
 
   
 	NVIC_InitStructure.NVIC_IRQChannel = DEBUG_USART_IRQ;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
+	
+	NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure); 
 	
 } 
 //------------------End of File----------------------------

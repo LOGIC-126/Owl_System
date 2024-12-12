@@ -137,6 +137,9 @@ typedef enum Car_mode_t{
 //存储器
 #include "W25Q64.h"
 
+//按键
+#include "Key1.h"
+
 
 //引出的通用变量
 extern float Velocity_Left,Velocity_Right; //轮子的速度
