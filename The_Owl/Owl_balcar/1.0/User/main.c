@@ -25,7 +25,7 @@ u8 Stop_Flag = 1;
 //0:开始 1:停止  //0: Start 1: Stop
 
 int Costime = 0;
-uint8_t datapacket[CTP_LONGTH];
+int8_t datapacket[CTP_LONGTH];
 //计时变量
 
 int main(void)

@@ -109,7 +109,7 @@ void USB_USARTConfig(void);
 void USB_UsartSendByte( USART_TypeDef * pUSARTx, uint8_t ch);
 void USB_UsartSendString( USART_TypeDef * pUSARTx, char *str);
 void USB_UsartSendHalfWord( USART_TypeDef * pUSARTx, uint16_t ch);
-void USB_UsartSendArray( USART_TypeDef * pUSARTx, uint8_t *array, uint16_t num);
-void USB_UsartSendpacket(USART_TypeDef * pUSARTx,uint8_t *array, uint16_t num);
+void USB_UsartSendArray( USART_TypeDef * pUSARTx, int8_t *array, uint16_t num);
+void USB_UsartSendpacket(USART_TypeDef * pUSARTx,int8_t *array, uint16_t num);
 
 #endif /* __USART_H */

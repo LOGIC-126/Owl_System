@@ -89,7 +89,7 @@ void USB_UsartSendByte( USART_TypeDef * pUSARTx, uint8_t ch)
 }
 
 /****************** 发送8位的数组 ************************/
-void USB_UsartSendArray( USART_TypeDef * pUSARTx, uint8_t *array, uint16_t num)
+void USB_UsartSendArray( USART_TypeDef * pUSARTx, int8_t *array, uint16_t num)
 {
   uint8_t i;
 	
@@ -137,7 +137,7 @@ void USB_UsartSendHalfWord( USART_TypeDef * pUSARTx, uint16_t ch)
 	while (USART_GetFlagStatus(pUSARTx, USART_FLAG_TXE) == RESET);	
 }
 ///发送打包的数据包
-void USB_UsartSendpacket(USART_TypeDef * pUSARTx,uint8_t *array, uint16_t num)
+void USB_UsartSendpacket(USART_TypeDef * pUSARTx,int8_t *array, uint16_t num)
 {
 	USB_UsartSendByte( pUSARTx , 0xFF);
 	USB_UsartSendArray( pUSARTx ,array ,num);

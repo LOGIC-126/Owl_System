@@ -45,7 +45,7 @@ def dataget(datas):
 
                     data = ser.read()  # 读取数据
                     if data:
-                        boot_data = int.from_bytes(data, byteorder='big')   # 原始数据化整
+                        boot_data = int.from_bytes(data, byteorder='big',signed=True)   # 原始数据化整
                         datas = packetget(boot_data)    # 解包数据包
                         
                         # # 改变接收数据文本
@@ -96,13 +96,13 @@ def packetget(Rxdata):
         globals()['The_datas'] = []
         
     if RxState == 0:  # 当前状态为0，接收数据包包头
-        if Rxdata == 255:  # 如果数据确实是包头
+        if Rxdata == -1:  # 如果数据确实是包头
             RxState = 1  # 置下一个状态
             The_datas.clear()  # type: ignore # 清空列表，准备接收新数据包
                 
     elif RxState == 1:  # 当前状态为1，接收数据包数据
         The_datas.append(Rxdata)  # 将数据添加到 The_datas 列表中
-        if len(The_datas) >= 3:  # 如果已经接收到3个数据字节
+        if len(The_datas) >= 11:  # 如果已经接收到3个数据字节
             RxState = 2  # 置下一个状态
                 
     elif RxState == 2:  # 当前状态为2，接收数据包包尾
@@ -132,7 +132,7 @@ def boot_textprint(text, mode):
     elif mode == 'hex':  # 十六进制原始数据模式
         text = text.hex()  # 使用 hex() 方法转换为十六进制字符串
     elif mode == 'int':  # 整数/数字模式
-        text = int.from_bytes(text, byteorder='big')
+        text = int.from_bytes(text, byteorder='big',signed= True)
     else:  # 报错
         text = "Error: 不支持的模式"
 
