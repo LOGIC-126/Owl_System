@@ -29,7 +29,7 @@ void OLED_I2C_Init(void)
 		OLED_IIC_Init();
 		OLED_Init();//oled初始化
 	
-		OLED_Draw_Line("oled init success!", 1, true, true);
+		OLED_Draw_Line("Owl_balcar 1.0", 1, true, true);
 }
 
 

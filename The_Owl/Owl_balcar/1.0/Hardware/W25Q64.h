@@ -13,6 +13,8 @@
 #define Turn_Kp_ADDRESS      0x00400  // 转向控制 Kp 参数地址
 #define Turn_Kd_ADDRESS      0x00500  // 转向控制 Kd 参数地址
 
+#define W25Q64_PAGE_SIZE 256
+
 void W25Q64_Init(void);
 void W25Q64_ReadID(uint8_t *MID, uint16_t *DID);
 void W25Q64_PageProgram(uint32_t Address, uint8_t *DataArray, uint16_t Count);

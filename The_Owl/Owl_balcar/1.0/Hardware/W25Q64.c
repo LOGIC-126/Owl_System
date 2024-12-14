@@ -76,7 +76,7 @@ void W25Q64_WaitBusy(void)
 void W25Q64_PageProgram(uint32_t Address, uint8_t *DataArray, uint16_t Count)
 {
 	uint16_t i;
-	
+
 	W25Q64_WriteEnable();						//写使能
 	
 	SPI_Start();								//SPI起始
@@ -144,9 +144,25 @@ void W25Q64_WriteFloat(uint32_t Address, float value)
 {
     uint8_t buffer[sizeof(float)];
     memcpy(buffer, &value, sizeof(float)); // 将浮点数转换为字节数组
-    
-    // 如果需要确保不跨越页边界，这里可以添加逻辑来处理
-    W25Q64_PageProgram(Address, buffer, sizeof(float));
+
+    // 确定页地址和偏移量
+    uint32_t pageAddress = Address & ~(W25Q64_PAGE_SIZE - 1);
+    uint32_t offset = Address & (W25Q64_PAGE_SIZE - 1);
+
+    if (offset + sizeof(float) <= W25Q64_PAGE_SIZE)
+    {
+        // 如果不会跨页，则直接写入
+        W25Q64_PageProgram(Address, buffer, sizeof(float));
+    }
+    else
+    {
+        // 如果会跨页，分两次写入
+        uint16_t firstPartSize = W25Q64_PAGE_SIZE - offset;
+        W25Q64_PageProgram(Address, buffer, firstPartSize);
+        W25Q64_PageProgram(pageAddress + W25Q64_PAGE_SIZE, buffer + firstPartSize, sizeof(float) - firstPartSize);
+    }
+
+    W25Q64_WaitBusy(); // 等待忙
 }
 
 /**

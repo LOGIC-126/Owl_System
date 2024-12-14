@@ -27,12 +27,11 @@ u8 Stop_Flag = 1;
 int Costime = 0;
 uint8_t datapacket[CTP_LONGTH];
 //计时变量
+
 int main(void)
 {
 	All_config();
-	OLED_Draw_Line("Owl_balcar 1.0", 1, true, false);
-	W25Q64_WriteFloat(Balance_Kp_ADDRESS, Balance_Kp);
-	Balance_Kp = W25Q64_ReadFloat(Balance_Kp_ADDRESS);
+	Get_W25Q64_PID();
 	while(1)
 	{	
 		if (Costime == 10){
@@ -42,8 +41,6 @@ int main(void)
 //			printf("Balance_Kp: %f \n",Balance_Kp);
 			USB_UsartSendpacket(DEBUG_USART,datapacket,CTP_LONGTH);
 			Costime = 0;
-			
-		
 		}
 
 	}	

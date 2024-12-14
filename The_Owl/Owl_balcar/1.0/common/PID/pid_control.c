@@ -35,6 +35,66 @@ float Turn_Kd=10; //范围 0-2
 //	return temp;
 //}
 
+/**************************************************************************
+Function: Get PID datas from USART
+Input   : datas of PID
+Output  : Null
+函数功能：串口获取PID数据		
+入口参数：相关参数的数组
+返回  值：无
+**************************************************************************/	
+void Get_USART_PID(float* datas)
+{
+	Balance_Kp = datas[0];
+    Balance_Kd = datas[1];
+	
+	Velocity_Kp = datas[2];
+	Velocity_Ki = datas[3];
+	
+	Turn_Kp = datas[4];
+	Turn_Kd = datas[5];
+}
+
+/**************************************************************************
+Function: Get PID datas from W25Q64
+Input   : Null
+Output  : Null
+函数功能：W25Q64读出PID数据		
+入口参数：无
+返回  值：无
+**************************************************************************/
+void Get_W25Q64_PID(void)
+{
+	Balance_Kp = W25Q64_ReadFloat(Balance_Kp_ADDRESS);
+	Balance_Kd = W25Q64_ReadFloat(Balance_Kd_ADDRESS);
+	
+	Velocity_Kp = W25Q64_ReadFloat(Velocity_Kp_ADDRESS);
+	Velocity_Ki = W25Q64_ReadFloat(Velocity_Ki_ADDRESS);
+	
+	Turn_Kp = W25Q64_ReadFloat(Turn_Kp_ADDRESS);
+	Turn_Kd = W25Q64_ReadFloat(Turn_Kd_ADDRESS);
+}
+
+
+/**************************************************************************
+Function: Save PID datas to W25Q64
+Input   : Null
+Output  : Null
+函数功能：W25Q64写入PID数据		
+入口参数：无
+返回  值：无
+**************************************************************************/	
+void SavePID(void)
+{
+	W25Q64_WriteFloat(Balance_Kp_ADDRESS, Balance_Kp);
+	W25Q64_WriteFloat(Balance_Kd_ADDRESS, Balance_Kd);
+	
+	W25Q64_WriteFloat(Velocity_Kp_ADDRESS, Velocity_Kp);
+	W25Q64_WriteFloat(Velocity_Ki_ADDRESS, Velocity_Ki);
+	
+	W25Q64_WriteFloat(Turn_Kp_ADDRESS, Turn_Kp);
+	W25Q64_WriteFloat(Turn_Kd_ADDRESS, Turn_Kd);
+}
 
 /**************************************************************************
 Function: Vertical PD control
