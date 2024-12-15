@@ -38,7 +38,7 @@ def dataget(datas):
                     
                     if window.if_send_data:
                         """检测标志,如是,则发送send_lineEdit里的数据"""
-                        send_text = window.send_lineEdit.text().encode('utf-8')
+                        send_text = window.send_lineEdit.text().encode('ascii')
                         # 发送数据
                         ser.write(send_text)
                         window.if_send_data = False

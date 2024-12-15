@@ -1,5 +1,8 @@
 #include "Usblinker.h"
 
+char Command[30];
+uint8_t ComFlag;
+
  /**
   * @brief  配置嵌套向量中断控制器NVIC
   * @param  无
@@ -145,8 +148,46 @@ void USB_UsartSendpacket(USART_TypeDef * pUSARTx,int8_t *array, uint16_t num)
 	
 }
 
-///串口接收数据
+//串口接收数据
+void DEBUG_USART_IRQHandler(void)
+{
+	static uint8_t RxState = 0;		//定义表示当前状态机状态的静态变量
+	static uint8_t pRxPacket = 0;	//定义表示当前接收数据位置的静态变量
+	if (USART_GetITStatus(DEBUG_USART, USART_IT_RXNE) == SET)		//判断是否是USART2的接收事件触发的中断
+	{			
+		char RxData = USART_ReceiveData(DEBUG_USART);  //读取数据寄存器，存放在接收的数据变量
+		/*使用状态机的思路，依次处理数据包的不同部分*/
+		
+		/*当前状态为0，接收数据包包头*/
+		if (RxState == 0)
+		{
+			if (RxData == 's')			//如果数据确实是包头
+			{
+				memset(Command, 0, sizeof(Command));  // 清空Command数组
+				RxState = 1;			//置下一个状态
+				pRxPacket = 0;			//数据包的位置归零
+			}
+		}
+		/*当前状态为1，接收数据包数据*/
+		else if (RxState == 1)
+		{
+			
+			if (RxData == 'e')			//如果数据确实是包尾部
+			{
+				RxState = 0;			//状态归0
+				ComFlag = 1;		//接收数据包标志位置1，成功接收一个数据包
+			}
+			else
+			{
+				Command[pRxPacket] = RxData;	//将数据存入数据包数组的指定位置
+				pRxPacket ++;				//数据包的位置自增
+			}
 
+		}
+		
+		USART_ClearITPendingBit(DEBUG_USART, USART_IT_RXNE);		//清除标志位
+	}
+}
 
 ///重定向c库函数printf到串口，重定向后可使用printf函数
 int fputc(int ch, FILE *f)

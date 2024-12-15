@@ -39,7 +39,7 @@ int main(void)
 			datapacket[1] = Gyro_Balance;
 			datapacket[2] = Gyro_Turn;
 //			printf("Balance_Kp: %f \n",Balance_Kp);
-			USB_UsartSendpacket(DEBUG_USART,datapacket,CTP_LONGTH);
+//			USB_UsartSendpacket(DEBUG_USART,datapacket,CTP_LONGTH);
 			Costime = 0;
 		}
 
