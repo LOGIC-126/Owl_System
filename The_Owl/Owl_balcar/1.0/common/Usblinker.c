@@ -1,9 +1,9 @@
 #include "Usblinker.h"
 #include "Command.h"
 
-char Command[10];
+char Command[30];
 uint8_t ComFlag; 
-
+struct Commandlists cd;
 /**
   * @brief  配置嵌套向量中断控制器NVIC
   * @param  无
@@ -165,6 +165,7 @@ void DEBUG_USART_IRQHandler(void)
 			if (RxData == 's')			//如果数据确实是包头
 			{
 				memset(Command, 0, sizeof(Command));  // 清空Command数组
+//				Command[0] = '\0';
 				RxState = 1;			//置下一个状态
 				pRxPacket = 0;			//数据包的位置归零
 			}
@@ -177,8 +178,9 @@ void DEBUG_USART_IRQHandler(void)
 			{
 				RxState = 0;			//状态归0
 				ComFlag = 1;		//接收数据包标志位置1，成功接收一个数据包
-				printf("%s\n",Command);
-				GetCommand(Command);
+//				printf("%s\n",Command);
+				GetCommand(Command,&cd);
+				printf("Head: %s,Mid: %s,Detail: %s\n",cd.head,cd.mid,cd.detail);
 			}
 			else
 			{
