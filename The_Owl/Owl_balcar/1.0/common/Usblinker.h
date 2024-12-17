@@ -105,6 +105,8 @@
 
 #define CTP_LONGTH 14
 
+
+
 void USB_USARTConfig(void);
 void USB_UsartSendByte( USART_TypeDef * pUSARTx, uint8_t ch);
 void USB_UsartSendString( USART_TypeDef * pUSARTx, char *str);

@@ -25,8 +25,16 @@ u8 Stop_Flag = 1;
 //0:开始 1:停止  //0: Start 1: Stop
 
 int Costime = 0;
-int8_t datapacket[CTP_LONGTH];
 //计时变量
+
+extern char Command[10];
+//指令字符串
+
+extern uint8_t ComFlag;
+//指令接收标志
+
+
+int8_t datapacket[CTP_LONGTH];
 
 int main(void)
 {

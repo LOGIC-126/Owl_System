@@ -140,6 +140,8 @@ typedef enum Car_mode_t{
 //按键
 #include "Key1.h"
 
+//命令解析
+#include "Command.h"
 
 //引出的通用变量
 extern float Velocity_Left,Velocity_Right; //轮子的速度
@@ -155,6 +157,8 @@ extern u8 lower_power_flag; 											//低电压标志,电压恢复标志
 extern u32 g_distance; 														//超声波距离值
 extern u8 Flag_velocity; 		//速度控制相关变量
 extern u8 Stop_Flag;//停止标志
+//extern char Command[10];
+//extern uint8_t ComFlag;
 
 void All_config(void);
 void NVIC_Config(void);

@@ -745,6 +745,16 @@
               <FileType>5</FileType>
               <FilePath>.\common\Spi.h</FilePath>
             </File>
+            <File>
+              <FileName>Command.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\common\Command.c</FilePath>
+            </File>
+            <File>
+              <FileName>Command.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\common\Command.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
