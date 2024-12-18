@@ -24,6 +24,9 @@ float Move_X,Move_Z;
 u8 Stop_Flag = 1; 
 //0:开始 1:停止  //0: Start 1: Stop
 
+u8 MPU6050_Flag = 1;
+//0:开始 1:停止  //0: Start 1: Stop
+
 int Costime = 0;
 //计时变量
 
@@ -46,8 +49,9 @@ int main(void)
 			datapacket[0] = Angle_Balance;
 			datapacket[1] = Gyro_Balance;
 			datapacket[2] = Gyro_Turn;
-//			printf("Balance_Kp: %f \n",Balance_Kp);
-//			USB_UsartSendpacket(DEBUG_USART,datapacket,CTP_LONGTH);
+//			printf("<debug>Balance_Kp: %f \n",Balance_Kp);
+			if(MPU6050_Flag == 0)
+				USB_UsartSendpacket(DEBUG_USART,datapacket,CTP_LONGTH);
 			Costime = 0;
 		}
 

@@ -21,6 +21,11 @@ void All_config(void)
 
 	
 	MPU6050_EXTI_Init();			//一定，他妈的，要放最后，妈的我查了老半天优先级的问题
+	printf("----------------------------------------\n");
+	printf("Owl Balcar 1.0 Has Been Completed!\n");
+	printf("----------------------------------------\n");
+	printf("Now You can give it command in < > \n");
+	printf("----------------------------------------\n");
 }
 
 

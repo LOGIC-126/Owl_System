@@ -157,6 +157,7 @@ extern u8 lower_power_flag; 											//低电压标志,电压恢复标志
 extern u32 g_distance; 														//超声波距离值
 extern u8 Flag_velocity; 		//速度控制相关变量
 extern u8 Stop_Flag;//停止标志
+extern u8 MPU6050_Flag;
 //extern char Command[10];
 //extern uint8_t ComFlag;
 
