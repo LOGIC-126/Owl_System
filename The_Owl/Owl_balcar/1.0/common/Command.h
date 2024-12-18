@@ -11,6 +11,7 @@ struct Commandlists
 };
 
 void GetCommand(char* command,struct Commandlists *list);
+void setCmd(char* head,char* mid,char* detail);
 
 
 

@@ -3,7 +3,7 @@
 
 char Command[30];
 uint8_t ComFlag; 
-struct Commandlists cd;
+struct Commandlists cmd;
 /**
   * @brief  配置嵌套向量中断控制器NVIC
   * @param  无
@@ -162,10 +162,9 @@ void DEBUG_USART_IRQHandler(void)
 		/*当前状态为0，接收数据包包头*/
 		if (RxState == 0)
 		{
-			if (RxData == 's')			//如果数据确实是包头
+			if (RxData == '<')			//如果数据确实是包头
 			{
 				memset(Command, 0, sizeof(Command));  // 清空Command数组
-//				Command[0] = '\0';
 				RxState = 1;			//置下一个状态
 				pRxPacket = 0;			//数据包的位置归零
 			}
@@ -174,13 +173,15 @@ void DEBUG_USART_IRQHandler(void)
 		else if (RxState == 1)
 		{
 			
-			if (RxData == 'e')			//如果数据确实是包尾部
+			if (RxData == '>')			//如果数据确实是包尾部
 			{
 				RxState = 0;			//状态归0
 				ComFlag = 1;		//接收数据包标志位置1，成功接收一个数据包
 //				printf("%s\n",Command);
-				GetCommand(Command,&cd);
-				printf("Head: %s,Mid: %s,Detail: %s\n",cd.head,cd.mid,cd.detail);
+				GetCommand(Command,&cmd);
+				setCmd(cmd.head,cmd.mid,cmd.detail);
+//				printf("Head: %s,Mid: %s,Detail: %s\n",cd.head,cd.mid,cd.detail);
+				
 			}
 			else
 			{
