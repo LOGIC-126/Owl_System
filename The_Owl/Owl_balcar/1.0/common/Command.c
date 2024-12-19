@@ -4,6 +4,7 @@ static void setmidCmd_cd(char* mid,char* detail);
 static void setmidCmd_mv(char* mid,char* detail);
 static void setmidCmd_rp(char* mid,char* detail);
 
+
  
 void GetCommand(char* command,struct Commandlists *list)
 {	
@@ -17,6 +18,7 @@ void GetCommand(char* command,struct Commandlists *list)
 	// 获取第一个子串
     token = strtok(command, delims);
     while (token != NULL) {
+
         printf("<debug>Token: %s\n", token);
 		if (ComState == 0)
 		{
@@ -37,7 +39,9 @@ void GetCommand(char* command,struct Commandlists *list)
         // 继续获取后续子串
         token = strtok(NULL, delims);
     }
+
 	printf("<debug>Head: %s,Mid: %s,Detail: %s\n",list->head,list->mid,list->detail);
+
 }
 
 void setCmd(char* head,char* mid,char* detail)
@@ -64,22 +68,18 @@ static void setmidCmd_cd(char* mid,char* detail)
 	{
 		if (detail[0] == '[')
 		{
-			int count=0;
-			float datas[12];
+//			int count=0;
+//			float datas[12];
 			const char delims[] = ",[]"; // 逗号作为分隔符
 			char *token;
 			// 获取第一个子串
 			token = strtok(detail, delims);
-			while (token != NULL) {
-//				float number = atof(token); // 使用 atof 转换为双精度浮点数
+			while (token != NULL) 
+			{
 				float number = strtof(token, NULL); // 使用 strtof 转换为单精度浮点数
-				datas[count++] = strtof(token, NULL); // 将 token 转换为单精度浮点数并存入数组
 //				printf("<debug>Token: %f\n", number);
-				
 				token = strtok(NULL, delims);
-				
 			}
-			
 		}
 	}
 	else if(strcmp(mid, "-pid1") == 0)
@@ -102,6 +102,7 @@ static void setmidCmd_cd(char* mid,char* detail)
 	{
 		SavePID();
 	}
+
 	else
 		printf("ERROR:cd command have no %s\n",mid);
 }
@@ -165,6 +166,13 @@ static void setmidCmd_rp(char* mid,char* detail)
 		printf("ERROR:rp command have no %s\n",mid);
 }
 
+
+
+void CodeCommand(struct Commandlists cclist)
+{
+	
+
+}
 
 
 
