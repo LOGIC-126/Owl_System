@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import (
     QVBoxLayout,QLineEdit,
     QRadioButton,QComboBox,
     QSpinBox,QDoubleSpinBox,
-    QCheckBox
+    QCheckBox,QTabWidget
 )
 from PyQt5.QtCore import QTimer, Qt
 from PyQt5 import uic
@@ -123,6 +123,7 @@ class MainWindow(QMainWindow):
         self.Daily_checkBox = self.ui.findChild(QCheckBox,"Daily_checkBox")
 
         ###PID设置区###
+        self.SettingtabWidget = self.ui.findChild(QTabWidget,"SettingtabWidget")
         self.KP_1lineEdit = self.ui.findChild(QLineEdit,"KP_1lineEdit")
         self.KI_1lineEdit = self.ui.findChild(QLineEdit,"KI_1lineEdit")
         self.KD_1lineEdit = self.ui.findChild(QLineEdit,"KD_1lineEdit")
@@ -674,10 +675,12 @@ class MainWindow(QMainWindow):
         # 获取所有设置值
         settings = self.get_all_set()
 
-        pids = settings['set_K1'] + settings['set_K2'] + settings['set_K3'] + settings['set_K4']
-        # 构建调试字符串
-        debug_info = f"<cd -pids {pids}>"
-        self.send_lineEdit.setText(debug_info)
+        if self.SettingtabWidget.currentIndex() == 1:
+            pids = settings['set_K1'] + settings['set_K2'] + settings['set_K3'] + settings['set_K4']
+            # 构建调试字符串
+            debug_info = f"<cd -pids {pids}>"
+            self.send_lineEdit.setText(debug_info)
+        
         # 将设置值写入JSON文件
         modify_json_file(self.setfile,settings)
         # 更改标志变量

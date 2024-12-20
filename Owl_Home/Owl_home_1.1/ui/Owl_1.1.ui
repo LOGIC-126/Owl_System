@@ -64,7 +64,7 @@
                <attribute name="title">
                 <string>串口</string>
                </attribute>
-               <layout class="QVBoxLayout" name="verticalLayout_25" stretch="1,0,0,0">
+               <layout class="QVBoxLayout" name="verticalLayout_25" stretch="1,0,0">
                 <item>
                  <widget class="QGroupBox" name="groupBox_3">
                   <property name="title">
@@ -306,18 +306,6 @@
                       </widget>
                      </item>
                     </layout>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QGroupBox" name="groupBox_5">
-                  <property name="title">
-                   <string>绘图区数据链接</string>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_26">
-                   <item>
-                    <widget class="QListView" name="datalink_listView"/>
                    </item>
                   </layout>
                  </widget>
