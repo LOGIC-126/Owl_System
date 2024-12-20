@@ -36,6 +36,11 @@ def dataget(datas):
                         finally:
                             continue
                     
+                    if window.if_settings_changed:
+                        """检测标志，如是，更改设置"""
+                        setting = load_data(window.setfile)
+                        window.if_settings_changed = False
+
                     if window.if_send_data:
                         """检测标志,如是,则发送send_lineEdit里的数据"""
                         send_text = window.send_lineEdit.text().encode('ascii')
@@ -77,10 +82,9 @@ def dataget(datas):
 # 主函数
 def mainWindow():
     global window,available_ports
-
     available_ports = get_available_com_ports()
     key_port = []
-    for port in available_ports:
+    for port in available_ports:     #添加可用串口
         key_port.append(port['device'])
     modify_json_file(returnPATH(),{"set_allport":key_port})
 

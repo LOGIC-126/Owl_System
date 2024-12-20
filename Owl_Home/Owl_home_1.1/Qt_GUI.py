@@ -49,6 +49,8 @@ class MainWindow(QMainWindow):
         self.boot_data_flag = False
         # 串口发送数据标志变量
         self.if_send_data = False
+        # 设置更改标志变量
+        self.if_settings_changed = False
 
         self.init_ui()
         self.init_setting()
@@ -672,8 +674,14 @@ class MainWindow(QMainWindow):
         # 获取所有设置值
         settings = self.get_all_set()
 
+        pids = settings['set_K1'] + settings['set_K2'] + settings['set_K3'] + settings['set_K4']
+        # 构建调试字符串
+        debug_info = f"<cd -pids {pids}>"
+        self.send_lineEdit.setText(debug_info)
         # 将设置值写入JSON文件
         modify_json_file(self.setfile,settings)
+        # 更改标志变量
+        self.if_settings_changed = True
 
 
     """

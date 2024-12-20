@@ -68,8 +68,8 @@ static void setmidCmd_cd(char* mid,char* detail)
 	{
 		if (detail[0] == '[')
 		{
-//			int count=0;
-//			float datas[12];
+			int count=0;
+			float datas[12];
 			const char delims[] = ",[]"; // 逗号作为分隔符
 			char *token;
 			// 获取第一个子串
@@ -77,9 +77,18 @@ static void setmidCmd_cd(char* mid,char* detail)
 			while (token != NULL) 
 			{
 				float number = strtof(token, NULL); // 使用 strtof 转换为单精度浮点数
-//				printf("<debug>Token: %f\n", number);
+				datas[count++] = strtof(token, NULL);
+				printf("<debug>Token: %.2f\n", number);
 				token = strtok(NULL, delims);
 			}
+			Balance_Kp = datas[0];
+			Balance_Kd = datas[2];
+			
+			Velocity_Kp = datas[3];
+			Velocity_Ki = datas[4];
+			
+			Turn_Kp = datas[6];
+			Turn_Kd = datas[8];
 		}
 	}
 	else if(strcmp(mid, "-pid1") == 0)
@@ -167,12 +176,6 @@ static void setmidCmd_rp(char* mid,char* detail)
 }
 
 
-
-void CodeCommand(struct Commandlists cclist)
-{
-	
-
-}
 
 
 
