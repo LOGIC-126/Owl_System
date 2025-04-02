@@ -676,7 +676,7 @@ class MainWindow(QMainWindow):
         settings = self.get_all_set()
 
         if self.SettingtabWidget.currentIndex() == 1:
-            pids = settings['set_K1'] + settings['set_K2'] + settings['set_K3'] + settings['set_K4']
+            pids = (str(settings['set_K1'] + settings['set_K2'] + settings['set_K3'] + settings['set_K4'])).replace(" ", "")
             # 构建调试字符串
             debug_info = f"<cd -pids {pids}>"
             self.send_lineEdit.setText(debug_info)

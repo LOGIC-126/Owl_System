@@ -1,7 +1,7 @@
 #include "Usblinker.h"
 #include "Command.h"
 
-char Command[100];
+char Command[150];
 uint8_t ComFlag; 
 struct Commandlists cmd;
 /**

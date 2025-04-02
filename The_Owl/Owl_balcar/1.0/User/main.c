@@ -15,7 +15,7 @@ int Temperature;
 float Acceleration_Z;                           		
 //Z轴加速度计  //Z-axis accelerometer
 
-int Mid_Angle;                          						
+int Mid_Angle = 4;                          						
 //机械中值  //Mechanical median
 
 float Move_X,Move_Z; 

@@ -3,7 +3,7 @@
 static void setmidCmd_cd(char* mid,char* detail);
 static void setmidCmd_mv(char* mid,char* detail);
 static void setmidCmd_rp(char* mid,char* detail);
-
+static void setmidCmd_help(void);
 
  
 void GetCommand(char* command,struct Commandlists *list)
@@ -19,7 +19,7 @@ void GetCommand(char* command,struct Commandlists *list)
     token = strtok(command, delims);
     while (token != NULL) {
 
-        printf("<debug>Token: %s\n", token);
+//        printf("<debug>Token: %s\n", token);
 		if (ComState == 0)
 		{
 			strcpy(list->head,token);
@@ -40,7 +40,7 @@ void GetCommand(char* command,struct Commandlists *list)
         token = strtok(NULL, delims);
     }
 
-	printf("<debug>Head: %s,Mid: %s,Detail: %s\n",list->head,list->mid,list->detail);
+//	printf("<debug>Head: %s,Mid: %s,Detail: %s\n",list->head,list->mid,list->detail);
 
 }
 
@@ -57,6 +57,10 @@ void setCmd(char* head,char* mid,char* detail)
 	else if(strcmp(head, "rp") == 0)
 	{
 		setmidCmd_rp(mid,detail);
+	}
+	else if(strcmp(head, "hp") == 0)
+	{
+		setmidCmd_help();
 	}
 	else
 		printf("ERROR:No command named %s\n",head);
@@ -78,7 +82,7 @@ static void setmidCmd_cd(char* mid,char* detail)
 			{
 				float number = strtof(token, NULL); // 使用 strtof 转换为单精度浮点数
 				datas[count++] = strtof(token, NULL);
-				printf("<debug>Token: %.2f\n", number);
+//				printf("<debug>Token: %.2f\n", number);
 				token = strtok(NULL, delims);
 			}
 			Balance_Kp = datas[0];
@@ -175,7 +179,29 @@ static void setmidCmd_rp(char* mid,char* detail)
 		printf("ERROR:rp command have no %s\n",mid);
 }
 
-
+static void setmidCmd_help(void)
+{
+    printf("Available commands:\n");
+    printf("  cd [option] [detail] - Change PID parameters\n");
+    printf("    -pids [Kp,Kd,VelKp,VelKi,TurnKp,TurnKd] - Set all PID parameters\n");
+    printf("    -pid1 - Set PID parameters for specific system 1\n");
+    printf("    -pid2 - Set PID parameters for specific system 2\n");
+    printf("    -pid3 - Set PID parameters for specific system 3\n");
+    printf("    -pid4 - Set PID parameters for specific system 4\n");
+    printf("    -save - Save current PID settings\n");
+    printf("  mv [option] - Move the vehicle\n");
+    printf("    -f - Move forward\n");
+    printf("    -b - Move backward\n");
+    printf("    -l - Turn left\n");
+    printf("    -r - Turn right\n");
+    printf("    -s - Toggle start/stop state of the car\n");
+    printf("  rp [option] - Report datas packet\n");
+    printf("    -s - Report SBUS sensor\n");
+    printf("    -m - Report MPU6050 sensor\n");
+    printf("    -a - All report (details not specified)\n");
+    printf("    -pid - Report current PID settings\n");
+    printf("  hp - Display this help message\n");
+}
 
 
 

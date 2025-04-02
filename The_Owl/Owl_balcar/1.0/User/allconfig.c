@@ -5,6 +5,7 @@ void All_config(void)
 {
 	NVIC_Config();
 	delay_init();
+	delay_ms(100);
 	OLED_I2C_Init();							//oled初始化 OLED initialization
 	USB_USARTConfig();
 	W25Q64_Init();
