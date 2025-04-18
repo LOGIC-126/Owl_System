@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "ano_fcdata.h": "c",
+        "ano_opmv_ctrl.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

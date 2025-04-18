@@ -1,0 +1,32 @@
+{
+    "set_port": "COM4",
+    "set_allport": [],
+    "set_baudrate": 115200,
+    "set_bytesize": "serial.EIGHTBITS",
+    "set_parity": "serial.PARITY_NONE",
+    "set_stopbits": "serial.STOPBITS_ONE",
+    "set_timeout": 1.0,
+    "set_decode_mode": "int",
+    "set_IF_notview": false,
+    "set_IF_add_daily": false,
+    "set_K1": [
+        6600.0,
+        60.0,
+        90.0
+    ],
+    "set_K2": [
+        1500.0,
+        75.0,
+        0.0
+    ],
+    "set_K3": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "set_K4": [
+        0.0,
+        0.0,
+        0.0
+    ]
+}
