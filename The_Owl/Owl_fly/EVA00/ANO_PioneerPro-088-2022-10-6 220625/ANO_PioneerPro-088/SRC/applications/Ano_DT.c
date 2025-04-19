@@ -223,8 +223,10 @@ void ANO_DT_Send_Data(u8 type,u8 *dataToSend , u8 length)
 {
 	if((type & USE_HID))// && fc_sta.unlock_sta == 0)
 		DT_SENDPTR_HID(dataToSend,length);
-	if(type & USE_U2)
+	if(type & USE_U2){
 		DT_SENDPTR_U2(dataToSend, length);
+		Usart2_Send(dataToSend, length);
+	}
 }
 //===========================================================
 //根据ID填充数据帧的data区域
@@ -1164,6 +1166,7 @@ void ANO_DT_Task1Ms(void)
 		if(CheckDotWts(USE_HID,i))
 			break;
 	}
+	// Usart2_Send("Hello,would!",11);
 	//USB发送服务程序
 	Usb_Hid_Send();
 }
