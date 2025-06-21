@@ -36,6 +36,7 @@
 #include "Ano_OPMV_Ctrl.h"
 #include "Ano_OF_DecoFusion.h"
 #include "Ano_Imu_Task.h"
+#include "Ano_Odom.h"
 #include "Drv_BSP.h"
 
 u32 test_dT_1000hz[3],test_rT[6];
@@ -149,6 +150,8 @@ static void Loop_50Hz(void)	//20ms执行一次
 //	Ano_UWB_Data_Calcu_Task(20);
 	/*位置速度环控制*/
 	Loc_1level_Ctrl(20,CH_N);
+	/*速度积分位置*/
+	PosCalculation_Task(20);
 	/*OPMV检测是否掉线*/
 	OpenMV_Offline_Check(20);
 	/*OPMV色块追踪数据处理任务*/
