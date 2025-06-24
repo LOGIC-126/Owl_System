@@ -27,13 +27,9 @@ void CalculateDisplacement(float delta_time_sec)
 }
 
 void PosCalculation_Task(u8 dT_ms) 
-{
-    static u16 timtmp = 0;
-    timtmp += dT_ms;
-    
+{    
     // 步骤1：将毫秒时间转换为秒（用于速度积分）
     float dT_sec = (float)dT_ms / 1000.0f;
     // 步骤2：执行位移计算
     CalculateDisplacement(dT_sec);
-
 }
