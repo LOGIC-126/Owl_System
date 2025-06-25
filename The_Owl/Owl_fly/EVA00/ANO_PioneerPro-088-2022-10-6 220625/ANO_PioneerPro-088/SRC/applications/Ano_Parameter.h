@@ -203,6 +203,9 @@ typedef struct
 
 	float 	pid_gps_loc_1level[PID];          //位置控制位置速度环PID参数
 	float 	pid_gps_loc_2level[PID];           //位置控制位置环PID参数
+	
+	float halt_pid_13[PID];
+	float xy_pid_14[PID];
 
 	float   warn_power_voltage;
 	s32	    bat_cell;

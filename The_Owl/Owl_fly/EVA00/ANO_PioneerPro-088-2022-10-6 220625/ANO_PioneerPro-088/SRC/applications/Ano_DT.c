@@ -121,8 +121,8 @@ u8 otherDataTmp[64];	//非循环发送数据临时缓冲
 #define HCA_VEL_Y      (loc_ctrl_1.fb[1])
 #define HCA_VEL_Z      (wcz_spe_fus.out)
 ////0x08
-#define ULHCA_POS_X      (total_displacement.X)
-#define ULHCA_POS_Y      (total_displacement.Y)
+#define ULHCA_POS_X      (0)
+#define ULHCA_POS_Y      (0)
 ////0X09
 //#define HCA_WIND_X      (nowind_est.wind_vel_h[X])
 //#define HCA_WIND_Y      (nowind_est.wind_vel_h[Y])

@@ -70,6 +70,15 @@ void PID_Rest()
 	Ano_Parame.set.pid_gps_loc_2level[KI] = 0;           //位置控制位置环PID参数(NULL)
 	Ano_Parame.set.pid_gps_loc_2level[KD] = 0;           //位置控制位置环PID参数(NULL)
 	
+	/***********************************/
+	Ano_Parame.set.halt_pid_13[KP] = 2.0f;
+	Ano_Parame.set.halt_pid_13[KI] = 0.0f;
+	Ano_Parame.set.halt_pid_13[KD] = 0.3f;
+	/***********************************/
+	Ano_Parame.set.xy_pid_14[KP] = 1.0f;
+	Ano_Parame.set.xy_pid_14[KI] = 0.0f;
+	Ano_Parame.set.xy_pid_14[KD] = 0.0f;
+	
 	AnoDTSendStr(USE_HID|USE_U2,SWJ_ADDR,LOG_COLOR_GREEN,"PID reset!");
 }
 
@@ -261,6 +270,15 @@ s32 AnoParRead(u16 _id)
 		case PAR_PID_12_P: p_val = 1e3f *Ano_Parame.set.pid_gps_loc_2level[0];	break;
 //		case PAR_PID_12_I: p_val = 1e3f *Ano_Parame.set.pid_gps_loc_2level[1];	break;
 //		case PAR_PID_12_D: p_val = 1e3f *Ano_Parame.set.pid_gps_loc_2level[2];	break;
+		/***********************************/
+		case PAR_PID_13_P: p_val = 1e3f *Ano_Parame.set.halt_pid_13[0]; break;
+		case PAR_PID_13_I: p_val = 1e3f *Ano_Parame.set.halt_pid_13[1]; break;
+		case PAR_PID_13_D: p_val = 1e3f *Ano_Parame.set.halt_pid_13[2]; break;
+		/***********************************/
+		case PAR_PID_14_P: p_val = 1e3f *Ano_Parame.set.xy_pid_14[0]; break;
+		case PAR_PID_14_I: p_val = 1e3f *Ano_Parame.set.xy_pid_14[1]; break;
+		case PAR_PID_14_D: p_val = 1e3f *Ano_Parame.set.xy_pid_14[2]; break;
+		
 		//====sensor_cali
 		case CAL_ACC_OFFSET_X:	p_val = Ano_Parame.set.acc_zero_offset[0] * 1000;	break;
 		case CAL_ACC_OFFSET_Y:	p_val = Ano_Parame.set.acc_zero_offset[1] * 1000;	break;
@@ -350,6 +368,14 @@ void AnoParWrite(u16 _id, s32 _val)
 		case PAR_PID_12_P: Ano_Parame.set.pid_gps_loc_2level[0] = 1e-3f *LIMIT(_val,0,65535);	break;
 		case PAR_PID_12_I: Ano_Parame.set.pid_gps_loc_2level[1] = 1e-3f *LIMIT(_val,0,65535);	break;
 		case PAR_PID_12_D: Ano_Parame.set.pid_gps_loc_2level[2] = 1e-3f *LIMIT(_val,0,65535);	break;
+		/********************************************************/
+		case PAR_PID_13_P: Ano_Parame.set.halt_pid_13[0] = 1e-3f *LIMIT(_val,0,65535);	break;
+		case PAR_PID_13_I: Ano_Parame.set.halt_pid_13[1] = 1e-3f *LIMIT(_val,0,65535);	break;
+		case PAR_PID_13_D: Ano_Parame.set.halt_pid_13[2] = 1e-3f *LIMIT(_val,0,65535);	break;
+		/********************************************************/
+		case PAR_PID_14_P: Ano_Parame.set.xy_pid_14[0] = 1e-3f *LIMIT(_val,0,65535);	break;
+		case PAR_PID_14_I: Ano_Parame.set.xy_pid_14[1] = 1e-3f *LIMIT(_val,0,65535);	break;
+		case PAR_PID_14_D: Ano_Parame.set.xy_pid_14[2] = 1e-3f *LIMIT(_val,0,65535);	break;
 		//====sensor_cali
 		case CAL_ACC_OFFSET_X:	Ano_Parame.set.acc_zero_offset[0] = (float)_val / 1000;	break;
 		case CAL_ACC_OFFSET_Y:	Ano_Parame.set.acc_zero_offset[1] = (float)_val / 1000;	break;
